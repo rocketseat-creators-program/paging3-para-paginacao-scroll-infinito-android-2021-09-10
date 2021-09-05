@@ -10,5 +10,6 @@
 
     <!-- Main colors -->
     <color name="status_alive">#00FF00</color>
+    <color name="status_dead">#FF0000</color>
     <color name="status_unknown">#808080</color>
 </resources>

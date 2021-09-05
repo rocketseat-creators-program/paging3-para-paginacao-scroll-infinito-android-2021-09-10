@@ -2,6 +2,7 @@ package com.expertsclub.expertspaging3.presentation.characters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,14 +12,16 @@ import com.expertsclub.expertspaging3.data.model.Character
 import com.expertsclub.expertspaging3.databinding.ItemCharacterBinding
 
 class CharactersAdapter
-    : ListAdapter<Character, CharactersAdapter.CharactersViewHolder>(DIFF_CALLBACK) {
+    : PagingDataAdapter<Character, CharactersAdapter.CharactersViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         return CharactersViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { character ->
+            holder.bind(character)
+        }
     }
 
     class CharactersViewHolder(
@@ -37,12 +40,9 @@ class CharactersAdapter
                 val status = character.status
 
                 textName.text = character.name
-                textStatus.text = character.status
+                textStatus.text = itemView.context.getString(status.description)
 
-                val statusImage = when (status) {
-                    "Alive" -> R.drawable.status_alive
-                    else -> R.drawable.status_unknonw
-                }
+                val statusImage = status.imageResId
 
                 textStatus.setCompoundDrawablesWithIntrinsicBounds(
                     0,

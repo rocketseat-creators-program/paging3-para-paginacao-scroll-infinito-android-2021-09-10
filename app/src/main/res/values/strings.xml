@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Experts Paging3</string>
     <string name="characters_title">Characters</string>
+    <string name="characters_status_alive">Alive</string>
+    <string name="characters_status_dead">Dead</string>
+    <string name="characters_status_unknown">Unknown</string>
 </resources>

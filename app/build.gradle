@@ -44,6 +44,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
 
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
+
     // Paging3
     def paging_version = "3.0.1"
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
@@ -62,6 +65,10 @@ dependencies {
     def retrofit_version = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // OkHttp4
+    def okhttp_version = '4.9.1'
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     // Moshi Kotlin
     def moshi_version = '1.12.0'
