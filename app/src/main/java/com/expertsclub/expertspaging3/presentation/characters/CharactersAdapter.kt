@@ -12,17 +12,23 @@ import com.expertsclub.expertspaging3.data.model.Character
 import com.expertsclub.expertspaging3.databinding.ItemCharacterBinding
 
 class CharactersAdapter
-    : PagingDataAdapter<Character, CharactersAdapter.CharactersViewHolder>(DIFF_CALLBACK) {
+    : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
+
+    var characters: List<Character> = listOf()
+        set(value) {
+            field = value
+            notifyItemRangeInserted(characters.size - 1, value.size - 1)
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         return CharactersViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
-        getItem(position)?.let { character ->
-            holder.bind(character)
-        }
+        holder.bind(characters[position])
     }
+
+    override fun getItemCount() = characters.size
 
     class CharactersViewHolder(
         private val binding: ItemCharacterBinding
@@ -62,17 +68,6 @@ class CharactersAdapter
 
                 return CharactersViewHolder(itemBinding)
             }
-        }
-    }
-
-    companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Character>() {
-            override fun areItemsTheSame(oldItem: Character, newItem: Character) =
-                oldItem.id == newItem.id
-
-            override fun areContentsTheSame(oldItem: Character, newItem: Character) =
-                oldItem == newItem
-
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.expertsclub.expertspaging3.data.network
 
-import com.expertsclub.expertspaging3.data.network.response.CharactersResponse
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -13,10 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 interface RickMortyApi {
 
     @GET("character")
-    suspend fun getCharacters(
-        @Query("page")
-        pageNumber: Int
-    ): CharactersResponse
+    suspend fun getCharacters()
 }
 
 object RetrofitService {

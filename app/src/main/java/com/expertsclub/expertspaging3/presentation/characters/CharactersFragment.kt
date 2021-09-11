@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.expertsclub.expertspaging3.R
-import com.expertsclub.expertspaging3.data.model.Character
 import com.expertsclub.expertspaging3.data.network.RetrofitService
-import com.expertsclub.expertspaging3.data.network.RickMortyApi
 import com.expertsclub.expertspaging3.data.repository.CharactersRepositoryImpl
 import com.expertsclub.expertspaging3.databinding.CharactersFragmentBinding
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 class CharactersFragment : Fragment() {
@@ -57,10 +55,8 @@ class CharactersFragment : Fragment() {
     }
 
     private fun loadCharacters() {
-        lifecycleScope.launch {
-            viewModel.charactersFlow.collectLatest { pagingData ->
-                charactersAdapter.submitData(pagingData)
-            }
+        viewModel.characters.observe(viewLifecycleOwner) { characters ->
+            charactersAdapter.characters = characters
         }
     }
 }

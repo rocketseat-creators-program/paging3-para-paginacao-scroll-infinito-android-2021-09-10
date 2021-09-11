@@ -2,16 +2,16 @@ package com.expertsclub.expertspaging3.presentation.characters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import androidx.paging.cachedIn
+import androidx.lifecycle.liveData
 import com.expertsclub.expertspaging3.data.repository.CharactersRepository
 
 class CharactersViewModel(
     charactersRepository: CharactersRepository
 ) : ViewModel() {
 
-    val charactersFlow = charactersRepository.getCharacters()
-        .cachedIn(viewModelScope)
+    val characters = liveData {
+        emit(charactersRepository.getCharacters())
+    }
 
     class Factory(
         private val charactersRepository: CharactersRepository
