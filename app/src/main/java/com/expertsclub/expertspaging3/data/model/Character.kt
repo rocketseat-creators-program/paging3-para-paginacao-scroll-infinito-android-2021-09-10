@@ -1,6 +1,5 @@
 package com.expertsclub.expertspaging3.data.model
 
-import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.expertsclub.expertspaging3.R
